@@ -22,29 +22,70 @@
 
 <div id="visdown-input">  
   
-# Maddy data viz notes
+#Currency note trends
   
 ```vis
 data: 
   url: data/notes.csv
-height: 1000
-mark: bar
+height: 800
+transform:
+- calculate: 100*datum.number
+  as: numnew
+  
+layer: 
+- mark: bar
+  encoding:
 
-encoding:
-  x: 
-    field: year
-    type: nominal
+    x:
+      field: year
+      type: ordinal
+
+    y:
+      aggregate: max
+      field: number
+      type: Q
+      axis:
+        grid: false
+      stack: normalize  
+    color: 
+      field: value
+      type: N
+      
+    
+
+- mark: text
+
+  encoding:
+
+    x: 
+      field: year
+      type: ordinal
+    y:
+      
+      field: money
+      type: Q
+      axis:
+        grid: false
+      scale:
+        zero: false
+    text:
+      field: value
+      type: N
+    size:
+      field: numnew
+      type: Q
+
+    
+resolve:
+  scale:
+    y: independent
+
+
 
   
-  y:   
-    field: number
-    type: Q
-    size: 30
-    stack: normalize
+
   
-  color:
-    field: denom
-    type: nominal
+
   
 ```
     
