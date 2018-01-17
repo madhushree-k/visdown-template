@@ -22,25 +22,29 @@
 
 <div id="visdown-input">  
   
-# Bar Plot
+# Maddy data viz notes
   
 ```vis
 data: 
-  url: data/cars.csv
-mark: point
+  url: data/notes.csv
+mark: bar
+
 encoding:
   x: 
-    field: kmpl
-    type: Q
+    field: year
+    type: nominal
+
+  
   y:   
-    field: price
+    field: number
     type: Q
+    size: 30
+    stack: normalize
+  
   color:
-    field: type
-    type: N
-  size:
-    field: bhp
-    type: Q
+    field: denom
+    type: ordinal
+  
 ```
     
 </div>
